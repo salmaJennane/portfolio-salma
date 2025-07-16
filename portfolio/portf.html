@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salma Jennane | Data Analytics & Business Intelligence</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 120px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        .skill-badge {
+            background-color: #f8f9fa;
+            color: var(--secondary-color);
+            margin: 5px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            border: 1px solid #dee2e6;
+            transition: all 0.3s;
+        }
+        
+        .skill-badge:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .project-card {
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .project-card .card-img-top {
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 30px 0;
+        }
+
+        /* Timeline Styles */
+        .timeline-wrapper {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, #3498db, #2ecc71);
+            top: 40px;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-badge {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -35px;
+            z-index: 3;
+            border: 3px solid #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-badge:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+        
+        .institution-logo {
+            max-width: 55%;
+            max-height: 55%;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content {
+            width: calc(50% - 50px);
+            opacity: 0;
+            transition: all 0.5s ease;
+            transform: translateY(30px);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            padding-right: 50px;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            padding-left: 50px;
+            text-align: left;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            position: relative;
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 20px;
+        }
+        
+        .timeline-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            display: flex;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-card {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-card {
+            flex-direction: row;
+        }
+        
+        .timeline-image {
+            flex: 1;
+            min-height: 220px;
+            overflow: hidden;
+        }
+        
+        .timeline-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .timeline-text {
+            flex: 1;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .timeline-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .timeline-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .timeline-text h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+        
+        .timeline-text h5 {
+            color: #3498db;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .location {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        /* Gallery Styles */
+        .horizontal-gallery-container {
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .horizontal-gallery-track {
+            display: flex;
+            gap: 20px;
+            transition: transform 0.5s ease;
+            will-change: transform;
+        }
+        
+        .gallery-card {
+            flex: 0 0 350px;
+            height: 450px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .image-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            padding: 30px 20px 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-card:hover .image-overlay {
+            opacity: 1;
+        }
+        
+        .image-caption h5 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .image-caption p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 30px;
+            }
+            
+            .timeline-badge {
+                left: 30px;
+                width: 60px;
+                height: 60px;
+                top: -30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
+                padding-left: 20px !important;
+                text-align: left !important;
+            }
+            
+            .timeline-card {
+                flex-direction: column !important;
+            }
+            
+            .timeline-image {
+                min-height: 180px;
+            }
+            
+            .gallery-card {
+                flex: 0 0 280px;
+                height: 380px;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-on-scroll {
+            animation: fadeIn 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Salma Jennane</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#formation">Formation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Expérience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projets">Projets</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#competences">Compétences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container hero-content">
+            <div class="mx-auto" style="max-width: 700px;">
+                <h1 class="display-4 fw-bold mb-3">Salma Jennane</h1>
+                <p class="lead mb-4">Étudiante en Business Intelligence & Analytics | Data Analyste</p>
+                <p class="mb-5">Passionnée par la transformation des données en insights actionnables pour une prise de décision éclairée.</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#contact" class="btn btn-light btn-lg px-4">Me contacter</a>
+                  <a href="CV_Salma_Jennane.pdf" class="btn btn-outline-light btn-lg px-4" download="CV_Salma_Jennane.pdf">Télécharger CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos Section -->
+    <section id="apropos" class="py-5">
+        <div class="container">
+            <h2 class="section-title">À propos de moi</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <p class="lead">Je suis une étudiante passionnée en Business Intelligence et Analytics à l'ENSIAS Rabat, actuellement à la recherche d'un stage de fin d'année en analyse de données.</p>
+                    <p>Avec un solide parcours académique en génie informatique et une expérience pratique en analyse de données, machine learning et développement web, j'apporte une combinaison unique de compétences techniques et d'esprit analytique pour résoudre des problèmes complexes.</p>
+                    <p>Mon parcours dans la technologie est motivé par la curiosité et le désir de transformer les données en informations exploitables qui créent de la valeur commerciale.</p>
+                    <div class="mt-4">
+                        <a href="#projets" class="btn btn-primary me-2">Voir mes projets</a>
+                        <a href="#competences" class="btn btn-outline-primary">Mes compétences</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-4">Informations personnelles</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="fas fa-envelope me-2 text-primary"></i>Email</span>
+                                    <span>salmajennane23@gmail.com</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="fas fa-phone me-2 text-primary"></i>Téléphone</span>
+                                    <span>+212 6 43 38 57 27</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="fab fa-linkedin me-2 text-primary"></i>LinkedIn</span>
+                                    <span>linkedin.com/in/salma-jennane</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="fas fa-map-marker-alt me-2 text-primary"></i>Localisation</span>
+                                    <span>Rabat, Maroc</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formation Section -->
+    <section id="formation" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Mon Parcours Académique</h2>
+            
+            <div class="timeline-wrapper">
+                <div class="timeline-line"></div>
+                
+                <!-- Item 1 - Lycée Bno Hanie -->
+                <div class="timeline-item">
+                    <div class="timeline-badge">
+                        <i class="fas fa-graduation-cap institution-logo"></i>
+                    </div>
+                    <div class="timeline-content animate-on-scroll">
+                        <div class="timeline-date">2017 - 2020</div>
+                        <div class="timeline-card">
+                            <div class="timeline-image">
+                                <img src="bno_hani.jpg" alt="Lycée Bno Hanie" class="img-fluid">
+                            </div>
+                            <div class="timeline-text">
+                                <h4>Baccalauréat Sciences Physiques</h4>
+                                <h5>Lycée Bno Hanie - Mention Très Bien</h5>
+                                <p class="location"><i class="fas fa-map-marker-alt"></i> Fès, Maroc</p>
+                                <div class="achievements">
+                                    <div class="achievement-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        Formation scientifique généraliste avec spécialisation en physique
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 - FST Fès -->
+                <div class="timeline-item">
+                    <div class="timeline-badge">
+                        <i class="fas fa-university institution-logo"></i>
+                    </div>
+                    <div class="timeline-content animate-on-scroll">
+                        <div class="timeline-date">2020 - 2023</div>
+                        <div class="timeline-card">
+                            <div class="timeline-image">
+                                <img src="fst.jpeg" alt="FST Fès" class="img-fluid">
+                            </div>
+                            <div class="timeline-text">
+                                <h4>Licence en Génie Informatique</h4>
+                                <h5>Faculté des Sciences et Techniques - Mention Bien</h5>
+                                <p class="location"><i class="fas fa-map-marker-alt"></i> Fès, Maroc</p>
+                                <div class="achievements">
+                                    <div class="achievement-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        Bases solides en algorithmique et développement logiciel
+                                    </div>
+                                    <div class="achievement-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        Spécialisation en modélisation de données
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 3 - ENSIAS -->
+                <div class="timeline-item">
+                    <div class="timeline-badge">
+                        <i class="fas fa-laptop-code institution-logo"></i>
+                    </div>
+                    <div class="timeline-content animate-on-scroll">
+                        <div class="timeline-date">2023 - 2026</div>
+                        <div class="timeline-card">
+                            <div class="timeline-image">
+                                <img src="ensias.jpeg" alt="ENSIAS Rabat" class="img-fluid">
+                            </div>
+                            <div class="timeline-text">
+                                <h4>Business Intelligence & Analytics</h4>
+                                <h5>ENSIAS - École Nationale Supérieure d'Informatique et d'Analyse des Systèmes</h5>
+                                <p class="location"><i class="fas fa-map-marker-alt"></i> Rabat, Maroc</p>
+                                <div class="achievements">
+                                    <div class="achievement-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        Formation axée sur l'analyse de données et data engineering
+                                    </div>
+                                    <div class="achievement-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        Visualisation de données et outils décisionnels
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Expérience -->
+    <section id="experience" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Expérience Professionnelle</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-img-top" style="height: 180px; background: url('architeo.png') center/cover;"></div>                        <div class="card-body">
+                            <h4 class="card-title">Architeo</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">Stage | Sept 2023 - Juin 2023</h6>
+                            <p class="card-text">Développement d'une application d'optimisation d'investissement avec un chatbot web basé sur des indicateurs financiers.</p>
+                            <ul class="mb-3">
+                                <li>Création d'un chatbot pour recommandations financières personnalisées</li>
+                                <li>Visualisation de graphiques boursiers interactifs</li>
+                                <li>Analyse des tendances du marché en temps réel</li>
+                            </ul>
+                            <div class="mt-auto">
+                                <span class="badge bg-primary me-1">Flask</span>
+                                <span class="badge bg-primary me-1">Alpha Vantage</span>
+                                <span class="badge bg-primary">NLTK</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-img-top" style="height: 180px; background: url('usmba.png') center/cover;"></div>                        <div class="card-body">
+                            <h4 class="card-title">Siège Présidentiel de l'USMBA</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">Stage de fin d'études | 2023</h6>
+                            <p class="card-text">Développement d'une application de gestion de réservation de machines virtuelles.</p>
+                            <ul class="mb-3">
+                                <li>Tableau de bord Professeur : Réserver et visualiser les demandes</li>
+                                <li>Tableau de bord Administrateur : Gestion des demandes</li>
+                                <li>Envoi automatique de notifications par email</li>
+                            </ul>
+                            <div class="mt-auto">
+                                <span class="badge bg-primary me-1">Laravel</span>
+                                <span class="badge bg-primary me-1">MySQL</span>
+                                <span class="badge bg-primary">Google API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets Section -->
+    <section id="projets" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Projets Académiques</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-img-top" style="height: 180px; background: url('in1.png') center/cover;"></div>                        <div class="card-body">
+                            <h4 class="card-title">Medical Book Analyzer</h4>
+                            <p class="card-text">Assistant IA multimodal pour l'analyse de contenu médical (texte, images, tableaux).</p>
+                            <ul class="mb-3">
+                                <li>RAG (Retrieval-Augmented Generation) multimodal</li>
+                                <li>Résumés pédagogiques + synthèse vocale avec gTTS</li>
+                                <li>Intégration avec ChromaDB pour la recherche vectorielle</li>
+                            </ul>
+                            <div class="mt-auto">
+                                <span class="badge bg-primary me-1">FastAPI</span>
+                                <span class="badge bg-primary me-1">GPT</span>
+                                <span class="badge bg-primary">EasyOCR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-img-top" style="height: 180px; background: url('peojet_datawre.png') center/cover;"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Data Warehouse - Évaluation de LLMs</h4>
+                            <p class="card-text">Conception et implémentation d'un data warehouse pour analyser les performances des modèles de langage.</p>
+                            <ul class="mb-3">
+                                <li>Modélisation en étoile et processus ETL</li>
+                                <li>Création de rapports BI interactifs</li>
+                                <li>Analyse comparative des performances</li>
+                            </ul>
+                            <div class="mt-auto">
+                                <span class="badge bg-primary me-1">SQL Server</span>
+                                <span class="badge bg-primary me-1">SSIS</span>
+                                <span class="badge bg-primary">Power BI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-img-top" style="height: 180px; background: url('dl_ml.png') center/cover;"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Classification de trafic réseau</h4>
+                            <p class="card-text">Détection d'attaques DDoS par Machine Learning et Deep Learning.</p>
+                            <ul class="mb-3">
+                                <li>Préparation et nettoyage des données réseau</li>
+                                <li>Implémentation d'algorithmes de classification</li>
+                                <li>Évaluation des performances des modèles</li>
+                            </ul>
+                            <div class="mt-auto">
+                                <span class="badge bg-primary me-1">Python</span>
+                                <span class="badge bg-primary me-1">Scikit-learn</span>
+                                <span class="badge bg-primary">TensorFlow</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compétences Section -->
+    <section id="competences" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Compétences Techniques</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="fas fa-chart-line me-2 text-primary"></i>Data Analytics</h4>
+                            <div class="mt-3">
+                                <span class="skill-badge">Power BI</span>
+                                <span class="skill-badge">Pandas</span>
+                                <span class="skill-badge">NumPy</span>
+                                <span class="skill-badge">Matplotlib</span>
+                                <span class="skill-badge">Seaborn</span>
+                                <span class="skill-badge">SSRS</span>
+                                <span class="skill-badge">Tableau</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="fas fa-database me-2 text-primary"></i>Data Engineering</h4>
+                            <div class="mt-3">
+                                <span class="skill-badge">SQL</span>
+                                <span class="skill-badge">MySQL</span>
+                                <span class="skill-badge">Oracle</span>
+                                <span class="skill-badge">MongoDB</span>
+                                <span class="skill-badge">ETL</span>
+                                <span class="skill-badge">SSIS</span>
+                                <span class="skill-badge">Airflow</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="fas fa-robot me-2 text-primary"></i>Machine Learning</h4>
+                            <div class="mt-3">
+                                <span class="skill-badge">Scikit-learn</span>
+                                <span class="skill-badge">TensorFlow</span>
+                                <span class="skill-badge">PyTorch</span>
+                                <span class="skill-badge">NLTK</span>
+                                <span class="skill-badge">OpenCV</span>
+                                <span class="skill-badge">LLMs</span>
+                                <span class="skill-badge">RAG</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="fas fa-code me-2 text-primary"></i>Développement</h4>
+                            <div class="mt-3">
+                                <span class="skill-badge">Python</span>
+                                <span class="skill-badge">Flask</span>
+                                <span class="skill-badge">FastAPI</span>
+                                <span class="skill-badge">JavaScript</span>
+                                <span class="skill-badge">HTML/CSS</span>
+                                <span class="skill-badge">Bootstrap</span>
+                                <span class="skill-badge">Laravel</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="fas fa-tools me-2 text-primary"></i>Outils</h4>
+                            <div class="mt-3">
+                                <span class="skill-badge">Git</span>
+                                <span class="skill-badge">Docker</span>
+                                <span class="skill-badge">Linux</span>
+                                <span class="skill-badge">Jupyter</span>
+                                <span class="skill-badge">VS Code</span>
+                                <span class="skill-badge">UML</span>
+                                <span class="skill-badge">Merise</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="fas fa-language me-2 text-primary"></i>Langues</h4>
+                            <div class="mt-3">
+                                <span class="skill-badge">Français (Courant)</span>
+                                <span class="skill-badge">Anglais (Courant)</span>
+                                <span class="skill-badge">Arabe (Maternelle)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bénévolat Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Bénévolat & Activités</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title d-flex align-items-center">
+                                <i class="fas fa-bullhorn me-3 text-primary"></i>
+                                Responsable Média/Communication - Projet Darkhir
+                            </h4>
+                            <ul class="mt-3">
+                                <li class="mb-2">Gestion des réseaux sociaux et stratégie de communication</li>
+                                <li class="mb-2">Création de contenu visuel et rédactionnel</li>
+                                <li>Coordination avec les associations partenaires</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title d-flex align-items-center">
+                                <i class="fas fa-hands-helping me-3 text-primary"></i>
+                                Club Social de l'ENSIAS
+                            </h4>
+                            <ul class="mt-3">
+                                <li class="mb-2">Organisation de caravanes socio-médicales</li>
+                                <li class="mb-2">Projets solidaires et activités communautaires</li>
+                                <li>Événements d'orientation et de soutien aux orphelins</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Passions Section -->
+<section id="passions" class="py-5">
+    <div class="container">
+        <h2 class="section-title">En dehors du code</h2>
+        
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">  <!-- Utilisation pleine largeur -->
+                        <h4 class="card-title">Mes passions</h4>
+                        <p class="lead">Quand je ne suis pas devant mon ordinateur, je m'intéresse à la photographie, à la lecture et aux activités communautaires.</p>
+                        
+                        <div class="row mt-4">  <!-- Organisation en grille -->
+                            <!-- Photographie -->
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="me-3 text-primary">
+                                        <i class="fas fa-camera fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Photographie</h5>
+                                        <p>Passionnée par la capture d'instants uniques, j'explore particulièrement :</p>
+                                        <ul>
+                                            <li>Les paysages urbains de Rabat</li>
+                                            <li>La lumière changeante du coucher de soleil</li>
+                                            <li>Les détails architecturaux traditionnels</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Lecture -->
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="me-3 text-primary">
+                                        <i class="fas fa-book fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Lecture & Veille technologique</h5>
+                                        <p>Mes lectures favorites :</p>
+                                        <ul>
+                                            <li>Ouvrages sur l'IA et la data science</li>
+                                            <li>Articles de recherche sur les LLMs</li>
+                                            <li>Biographies de pionniers technologiques</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Engagement communautaire -->
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="me-3 text-primary">
+                                        <i class="fas fa-hands-helping fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Engagement communautaire</h5>
+                                        <p>Mon implication :</p>
+                                        <ul>
+                                            <li>Intégration dans des cours de soutein pour les orphelins</li>
+                                            <li>Bénévolat dans des caravanes socio-médicales</li>
+                                            <li>Organisation de l'activité Iftar saim</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Voyages -->
+                            <div class="col-md-6 mb-4">
+                                <div class="d-flex">
+                                    <div class="me-3 text-primary">
+                                        <i class="fas fa-map-marked-alt fa-2x"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Voyages & Découvertes</h5>
+                                        <p>Mes expériences marquantes :</p>
+                                        <ul>
+                                            <li>Exploration des villes impériales marocaines</li>
+                                            <li>Randonnées dans l'Atlas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Galerie Photo Horizontale -->
+    <section id="gallery" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Galerie Photo</h2>
+            
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <p class="lead">À travers mon objectif, je capture l'éphémère beauté de la nature marocaine.</p>
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+                        <span class="badge bg-primary px-3 py-2"><i class="fas fa-mountain me-2"></i>Paysages</span>
+                        <span class="badge bg-primary px-3 py-2"><i class="fas fa-tree me-2"></i>Nature</span>
+                        <span class="badge bg-primary px-3 py-2"><i class="fas fa-sun me-2"></i>Lumière</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conteneur Galerie Horizontale -->
+            <div class="horizontal-gallery-container">
+                <div class="horizontal-gallery-track">
+                    <!-- Photo 1 -->
+                    <div class="gallery-card">
+                        <div class="image-container">
+                            <img src="coucher_soleil.jpeg" alt="Coucher de soleil">
+                            <div class="image-overlay">
+                                <div class="image-caption">
+                                    <h5>Coucher de soleil</h5>
+                                    <p>Rabat, 2023</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Photo 2 -->
+                    <div class="gallery-card">
+                        <div class="image-container">
+                            <img src="four.jpeg" alt="Architecture traditionnelle">
+                            <div class="image-overlay">
+                                <div class="image-caption">
+                                    <h5>four traditionnelle</h5>
+                                    <p>Azilal, 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Photo 3 -->
+                    <div class="gallery-card">
+                        <div class="image-container">
+                            <img src="fleur.jpeg" alt="Floraison printanière">
+                            <div class="image-overlay">
+                                <div class="image-caption">
+                                    <h5>Floraison printanière</h5>
+                                    <p>Azilal, 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Photo 4 -->
+                    <div class="gallery-card">
+                        <div class="image-container">
+                            <img src="karaouiyin.jpeg" alt="Mosquée Hassan II">
+                            <div class="image-overlay">
+                                <div class="image-caption">
+                                    <h5>Mosquée Quaraouiyine</h5>
+                                    <p>Fès, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Photo 5 -->
+                    <div class="gallery-card">
+                        <div class="image-container">
+                            <img src="fleur_rabat.jpeg" alt="Fleurs">
+                            <div class="image-overlay">
+                                <div class="image-caption">
+                                    <h5>Fleurs sauvages</h5>
+                                    <p>Rabat, 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Contrôles de navigation -->
+            <div class="gallery-controls text-center mt-4">
+                <button class="btn btn-outline-primary gallery-prev mx-2">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="btn btn-outline-primary gallery-next mx-2">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+<!-- Contact Section -->
+<!-- Contact Section -->
+<section id="contact" class="py-5">
+    <div class="container">
+        <h2 class="section-title">Contactez-moi</h2>
+        <div class="row">
+            <!-- Formulaire de Contact -->
+            <div class="col-lg-6 mb-4">
+                <form id="contactForm">
+                    <div class="mb-3">
+                        <input type="text" name="user_name" class="form-control" placeholder="Votre nom complet" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" name="user_email" class="form-control" placeholder="Votre email" required>
+                    </div>
+                    <div class="mb-3">
+                        <select name="subject" class="form-select" required>
+                            <option value="" disabled selected>Sélectionnez un sujet</option>
+                            <option value="Opportunité professionnelle">Opportunité professionnelle</option>
+                            <option value="Question technique">Question technique</option>
+                            <option value="Collaboration">Collaboration</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <textarea name="message" class="form-control" rows="5" placeholder="Votre message..." required></textarea>
+                    </div>
+
+                    <!-- Bouton d'envoi -->
+                    <button type="submit" class="btn btn-primary w-100">
+                        <span class="submit-text">Envoyer le message</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status"></span>
+                    </button>
+
+                    <!-- Message de confirmation -->
+                    <div id="formFeedback" class="mt-3 alert d-none"></div>
+                </form>
+            </div>
+
+  <!-- Coordonnées -->
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title d-flex align-items-center">
+                            <i class="fas fa-paper-plane me-2 text-primary"></i>
+                            Mes coordonnées
+                        </h4>
+                        
+                        <ul class="list-unstyled contact-info">
+                            <li class="mb-3">
+                                <a href="mailto:salmajennane23@gmail.com" class="text-decoration-none">
+                                    <i class="fas fa-envelope me-2 text-primary"></i>
+                                    salmajennane23@gmail.com
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="tel:+212643385727" class="text-decoration-none">
+                                    <i class="fas fa-phone me-2 text-primary"></i>
+                                    +212 6 43 38 57 27
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="https://www.linkedin.com/in/salma-jennane-58a301263/" target="_blank" class="text-decoration-none">
+                                    <i class="fab fa-linkedin me-2 text-primary"></i>
+                                    /salma-jennane
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                                Rabat, Maroc
+                            </li>
+                        </ul>
+                        
+                        <div class="social-links mt-4">
+                            <a href="https://www.linkedin.com/in/salma-jennane-58a301263/" target="_blank" class="btn btn-outline-primary btn-sm me-2">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/salmaJennane" target="_blank" class="btn btn-outline-primary btn-sm me-2">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="mt-4 pt-3 border-top">
+                            <h5 class="mb-3"><i class="fas fa-briefcase me-2"></i>Disponibilité</h5>
+                            <p>Actuellement à la recherche d'un stage en :</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary">Data Analytics</span>
+                                <span class="badge bg-primary">Business Intelligence</span>
+                                <span class="badge bg-primary">Data Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Styles -->
+<style>
+    .contact-info li {
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .contact-info li:last-child {
+        border-bottom: none;
+    }
+    .form-control, .form-select {
+        border-radius: 8px;
+        padding: 12px;
+    }
+</style>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    (function() {
+        emailjs.init("sBioJ9ft-awhzNd-x"); // Remplace par ton vrai USER ID EmailJS
+    })();
+
+    // Gestion de l'envoi du formulaire
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const feedbackDiv = document.getElementById('formFeedback');
+
+        // Spinner
+        submitBtn.querySelector('.submit-text').classList.add('d-none');
+        submitBtn.querySelector('.spinner-border').classList.remove('d-none');
+        submitBtn.disabled = true;
+
+        // Envoi avec EmailJS
+        emailjs.sendForm('service_56e0zsj', 'template_agd50dm', form)
+        .then(function() {
+            feedbackDiv.textContent = 'Message envoyé avec succès !';
+            feedbackDiv.classList.remove('alert-danger', 'd-none');
+            feedbackDiv.classList.add('alert-success');
+            form.reset();
+        }, function(error) {
+            feedbackDiv.textContent = 'Une erreur est survenue. Veuillez me contacter directement par email.';
+            feedbackDiv.classList.remove('alert-success', 'd-none');
+            feedbackDiv.classList.add('alert-danger');
+        })
+        .finally(() => {
+            submitBtn.querySelector('.submit-text').classList.remove('d-none');
+            submitBtn.querySelector('.spinner-border').classList.add('d-none');
+            submitBtn.disabled = false;
+            feedbackDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <div class="mb-3">
+                <a href="https://www.linkedin.com/in/salma-jennane-58a301263/" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a href="https://github.com/salmaJennane" class="text-white me-3"><i class="fab fa-github fa-lg"></i></a>
+            </div>
+            <p class="mb-0">&copy; 2025 Salma Jennane. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation au scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation des éléments de la timeline
+            const timelineItems = document.querySelectorAll('.animate-on-scroll');
+            
+            function checkVisibility() {
+                timelineItems.forEach(item => {
+                    const rect = item.getBoundingClientRect();
+                    const isVisible = (rect.top <= window.innerHeight * 0.75);
+                    
+                    if (isVisible) {
+                        item.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Vérifier au chargement
+            checkVisibility();
+            
+            // Vérifier pendant le scroll
+            window.addEventListener('scroll', checkVisibility);
+            
+            // Galerie horizontale
+            const track = document.querySelector('.horizontal-gallery-track');
+            const prevBtn = document.querySelector('.gallery-prev');
+            const nextBtn = document.querySelector('.gallery-next');
+            const cardWidth = 350; // Largeur d'une carte + gap
+            let currentPosition = 0;
+            
+            // Défilement vers la droite
+            nextBtn.addEventListener('click', function() {
+                currentPosition -= cardWidth + 20; // 20px pour le gap
+                const maxScroll = -(track.scrollWidth - track.parentElement.offsetWidth);
+                
+                if (currentPosition < maxScroll) {
+                    currentPosition = 0; // Retour au début si on arrive à la fin
+                }
+                track.style.transform = `translateX(${currentPosition}px)`;
+            });
+            
+            // Défilement vers la gauche
+            prevBtn.addEventListener('click', function() {
+                currentPosition += cardWidth + 20;
+                
+                if (currentPosition > 0) {
+                    // Aller à la fin si on est au début
+                    currentPosition = -(track.scrollWidth - track.parentElement.offsetWidth);
+                }
+                track.style.transform = `translateX(${currentPosition}px)`;
+            });
+            
+            // Navigation au clavier
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight') {
+                    nextBtn.click();
+                } else if (e.key === 'ArrowLeft') {
+                    prevBtn.click();
+                }
+            });
+            
+            // Formulaire de contact
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Merci pour votre message! Je vous répondrai dès que possible.');
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
